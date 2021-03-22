@@ -1,6 +1,6 @@
 //components/CreatePost.js
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import fire from '../config/fire-config';
 
 
@@ -32,7 +32,7 @@ const CreatePost = () => {
             <h2> Add Blog </h2>
 
                 {notification}
-                
+
             <form onSubmit={handleSubmit}> 
                 <div>
                   Title <br />
