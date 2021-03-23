@@ -20,17 +20,21 @@ const Home = () => {
   }, [])
   console.log(blogs)
   return (
-    <div> 
+    <div className = {styles.main}> 
       <Head> 
         <title> Blog App </title>
       </Head>
-      <h1> Blog 1 </h1>
+      <h1 className = {styles.title}> Blogs </h1>
+      <div className = {styles.card}> 
         <ul> 
           {blogs.map (blog => (
             <li key = {blog.id} > {blog.title} </li>
           ))}
         </ul>
+     </div>
+     <div className = {styles.card}> 
       <CreatePost />
+      </div>
     </div>
   )
 }
