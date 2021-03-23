@@ -3,6 +3,7 @@ import React ,{ useState, useEffect } from 'react'
 import CreatePost from '../components/CreatePost'
 import fire from '../config/fire-config'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 const Home = () => {
   const [blogs,setBlogs] = useState([]);
@@ -16,7 +17,7 @@ const Home = () => {
         ...doc.data()
       }));
       setBlogs(blogs);
-    });
+    }, console.error);
   }, [])
   console.log(blogs)
   return (
@@ -28,7 +29,11 @@ const Home = () => {
       <div className = {styles.card}> 
         <ul> 
           {blogs.map (blog => (
-            <li key = {blog.id} > {blog.title} </li>
+             <h5 key = {blog.id}>
+              <Link href ="/blog/[id]" as = {'/blog/' + blog.id}> 
+                {blog.title} 
+              </Link>  
+             </h5>
           ))}
         </ul>
      </div>
