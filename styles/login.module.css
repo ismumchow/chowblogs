@@ -1,5 +1,5 @@
 .container {
-  min-height: 100vh;
+  min-height: 40vh;
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
@@ -121,4 +121,10 @@
   }
 }
 
+.margin {
+  margin: 1vh 2vw;
+}
 
+.antimargin {
+  margin: -5vw
+}

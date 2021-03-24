@@ -11,7 +11,7 @@ const Blog = (props) => {
     return (
         <div className = {styles.main} >
          <div className = {styles.card}> 
-            <h2  >{props.title}</h2>
+            <h2 >{props.title}</h2>
             <p>{props.content}</p>
             <Link href="/">
                 <a>Back</a>
