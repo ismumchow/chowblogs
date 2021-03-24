@@ -7,27 +7,12 @@ import styles from '../../styles/Home.module.css'
 
 
 const Blog = (props) => {
-   const [blog, setBlog] = useState(null)
-
-   useEffect(() => {
-       fire.firestore()
-       .collection('blog')
-       .doc(props.id)
-       .get()
-       .then(result => {
-           setBlog(result.data())
-       }, console.error)
-   }, [])
-
-   if(!blog) return <h2> Loading ...</h2>
-  
+ 
     return (
         <div className = {styles.main} >
-            <div className = {styles.card}> 
-            <h2  >{blog.title}</h2>
-            <p>
-                {blog.content}
-            </p>
+         <div className = {styles.card}> 
+            <h2  >{props.title}</h2>
+            <p>{props.content}</p>
             <Link href="/">
                 <a>Back</a>
             </Link>
@@ -36,9 +21,21 @@ const Blog = (props) => {
     )
 }
 
-Blog.getInitialProps = ({ query }) => {
-    return { 
-        id : query.id,
-    }
+export const getServerSideProps = async ({ query }) => {
+    const content = {};
+    await fire.firestore()
+        .collection('blog')
+        .doc(query.id)
+        .get()
+        .then(result => {
+            content['title'] = result.data().title
+            content['content'] = result.data().content
+        });
+        return {
+            props:{
+                title: content.title,
+                content: content.content,
+            }
+        }
 }
 export default Blog
